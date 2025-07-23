@@ -134,9 +134,9 @@
 
   <!-- Header -->
   <header class="app-header">
-    <div class="menu">&#9776;</div>
+    
     <h1>Cashifyo</h1>
-    <div class="search">&#128269;</div>
+    
   </header>
 
   <!-- Total Profit Section -->
@@ -180,11 +180,11 @@
   </section>
 
   <!-- Bottom Navigation -->
-  <nav class="bottom-nav">
-    <div>🏠<p>Home</p></div>
-    <div>👥<p>Team</p></div>
-    <div>👤<p>Profile</p></div>
-  </nav>
+<nav class="bottom-nav">
+  <div onclick="showPage('homePage')">🏠<p>Home</p></div>
+  <div onclick="showPage('teamPage')">👥<p>Team</p></div>
+  <div onclick="showPage('profilePage')">👤<p>Profile</p></div>
+</nav>
 
   <!-- Popup -->
   <div class="popup" id="popup">
@@ -204,6 +204,13 @@
     function hidePopup() {
       document.getElementById('popup').style.display = 'none';
     }
-  </script>
+  <script>
+  function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(function(p) {
+      p.classList.remove('active');
+    });
+    document.getElementById(pageId).classList.add('active');
+  }
+</script>
 </body>
 </html>
