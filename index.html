@@ -2,208 +2,285 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cashifyo - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cashifyo - Login & Signup</title>
   <style>
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
     }
 
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #008000;
-    }
-
-    .app-header {
+      background-color: #aaf5cf;
       display: flex;
-      justify-content: space-between;
-      padding: 10px 20px;
-      background: linear-gradient(to right, #008000, #008000);
-      color: #CCFFCC;
+      justify-content: center;
       align-items: center;
+      height: 100vh;
     }
 
-    .app-header .menu, .app-header .search {
-      font-size: 22px;
-      cursor: pointer;
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      position: relative;
     }
 
-    .profit-section {
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 60px;
+    }
+
+    .logo h1 {
+      font-size: 26px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #333;
+    }
+
+    .logo p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-size: 14px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      color: #444;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .options {
       display: flex;
       justify-content: space-between;
-      padding: 15px;
-      background: #CCFFCC;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      align-items: center;
+      font-size: 13px;
+      margin: 10px 0;
     }
 
-    .wallet-btn {
-      background: #0F4D0F;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 12px;
-      font-size: 14px;
-    }
-
-    .ads-banner {
-      margin: 10px;
-      overflow: hidden;
-    }
-
-    .carousel img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .grid-buttons {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      padding: 12px;
-    }
-
-    .grid-item {
-      background: linear-gradient(145deg, #fff, #fff);
-      box-shadow: 4px 4px 12px #ccc, -4px -4px 12px #fff;
-      border-radius: 20px;
-      text-align: center;
-      padding: 15px;
-      transition: all 0.2s ease;
+    .options a {
+      color: #00b56e;
+      text-decoration: none;
       cursor: pointer;
     }
 
-    .grid-item:hover {
-      transform: scale(1.05);
+    button {
+      margin-top: 15px;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(145deg, #00c77c, #00a962);
+      color: white;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: 0.3s;
     }
 
-    .grid-item img {
-      width: 40px;
-      margin-bottom: 10px;
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
     }
 
-    .grid-item.wide {
-      grid-column: span 2;
-    }
-
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-around;
-      background: #fff;
-      box-shadow: 0 -1px 5px rgba(0,0,0,0.2);
-      padding: 10px 0;
-    }
-
-    .bottom-nav div {
+    .switch-link {
       text-align: center;
+      margin-top: 15px;
       font-size: 14px;
     }
 
-    .popup {
+    .switch-link a {
+      color: #00b56e;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .hidden {
       display: none;
+    }
+
+    /* Forgot Password Popup */
+    .forgot-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      width: 90%;
+      max-width: 350px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+      z-index: 999;
+      display: none;
+    }
+
+    .forgot-popup h3 {
+      text-align: center;
+      color: #00b56e;
+      margin-bottom: 15px;
+    }
+
+    .forgot-popup input {
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 15px;
+      box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .forgot-popup button {
+      width: 100%;
+      margin-top: 15px;
+      background: linear-gradient(145deg, #00c77c, #00a962);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .overlay {
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.4);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    .popup-content {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      width: 80%;
-    }
-
-    .close-btn {
-      float: right;
-      font-size: 22px;
-      cursor: pointer;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      display: none;
+      z-index: 998;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="App Logo" />
+      <h1>Cashifyo</h1>
+      <p>Start earning money today!</p>
+    </div>
 
-  <!-- Header -->
-  <header class="app-header">
-    <div class="menu">&#9776;</div>
-    <h1>Cashifyo</h1>
-    <div class="search">&#128269;</div>
-  </header>
+    <!-- Login Form -->
+    <form id="loginForm">
+      <label>Email, Phone or Username</label>
+      <input type="text" required />
 
-  <!-- Total Profit Section -->
-  <section class="profit-section">
-    <div class="profit-info">
-      <span>Your Total Profit</span>
-      <h2>₹ 0.00</h2>
-    </div>
-    <button class="wallet-btn">Wallet</button>
-  </section>
+      <label>Password</label>
+      <input type="password" required />
 
-  <!-- Ads Banner -->
-  <section class="ads-banner">
-    <div class="carousel">
-      <img src="https://via.placeholder.com/300x100?text=Ad+1" alt="Ad 1" />
-    </div>
-  </section>
+      <div class="options">
+        <label><input type="checkbox" /> Remember me</label>
+        <a onclick="openForgotPopup()">Forgot Password?</a>
+      </div>
 
-  <!-- Grid Buttons -->
-  <section class="grid-buttons">
-    <div class="grid-item" onclick="showPopup('Total Ads')">
-      <img src="https://img.icons8.com/ios-filled/50/ads.png" alt="ads"/>
-      <p>Total Ads</p>
-    </div>
-    <div class="grid-item" onclick="showPopup('Points = INR')">
-      <img src="https://img.icons8.com/ios-filled/50/rupee.png" alt="rupee"/>
-      <p>Total Points = INR</p>
-    </div>
-    <div class="grid-item wide" onclick="showPopup('Scratch Card')">
-      <img src="https://img.icons8.com/ios-filled/50/scratchcard.png" alt="scratch"/>
-      <p>Scratch Card</p>
-    </div>
-    <div class="grid-item" onclick="showPopup('Products')">
-      <img src="https://img.icons8.com/ios-filled/50/product.png" alt="product"/>
-      <p>Products</p>
-    </div>
-    <div class="grid-item" onclick="showPopup('Offers')">
-      <img src="https://img.icons8.com/ios-filled/50/discount.png" alt="offer"/>
-      <p>Subscription Offer</p>
-    </div>
-  </section>
+      <button type="submit">Login</button>
 
-  <!-- Bottom Navigation -->
-  <nav class="bottom-nav">
-    <div>🏠<p>Home</p></div>
-    <div>👥<p>Team</p></div>
-    <div>👤<p>Profile</p></div>
-  </nav>
+      <div class="switch-link">
+        Don't have an account? <a onclick="toggleForm('signup')">Sign Up</a>
+      </div>
+    </form>
 
-  <!-- Popup -->
-  <div class="popup" id="popup">
-    <div class="popup-content">
-      <span onclick="hidePopup()" class="close-btn">&times;</span>
-      <p id="popup-text">Popup Content</p>
-    </div>
+    <!-- Signup Form -->
+    <form id="signupForm" class="hidden">
+      <label>Full Name</label>
+      <input type="text" required />
+
+      <label>Mobile Number</label>
+      <input type="tel" required />
+
+      <label>Email</label>
+      <input type="email" required />
+
+      <label>OTP</label>
+      <input type="number" required />
+
+      <label>Password</label>
+      <input type="password" required />
+
+      <label>Confirm Password</label>
+      <input type="password" required />
+
+      <button type="submit">Sign Up</button>
+
+      <div class="switch-link">
+        Already have an account? <a onclick="toggleForm('login')">Login</a>
+      </div>
+    </form>
   </div>
 
-  <!-- JavaScript -->
+  <!-- Forgot Password Popup -->
+  <div class="overlay" id="overlay"></div>
+  <div class="forgot-popup" id="forgotPopup">
+    <h3>Reset Password</h3>
+    <input type="tel" placeholder="Enter Mobile Number" />
+    <input type="text" placeholder="Enter OTP" />
+    <button onclick="getOTP()">Get OTP</button>
+    <button onclick="continueLogin()">Continue</button>
+  </div>
+
   <script>
-    function showPopup(content) {
-      document.getElementById('popup-text').innerText = content;
-      document.getElementById('popup').style.display = 'flex';
+    const loginForm = document.getElementById("loginForm");
+    const signupForm = document.getElementById("signupForm");
+    const forgotPopup = document.getElementById("forgotPopup");
+    const overlay = document.getElementById("overlay");
+
+    function toggleForm(form) {
+      if (form === "signup") {
+        loginForm.classList.add("hidden");
+        signupForm.classList.remove("hidden");
+      } else {
+        signupForm.classList.add("hidden");
+        loginForm.classList.remove("hidden");
+      }
     }
 
-    function hidePopup() {
-      document.getElementById('popup').style.display = 'none';
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Login successful (demo)");
+    });
+
+    signupForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Sign up successful (demo)");
+    });
+
+    function openForgotPopup() {
+      forgotPopup.style.display = "block";
+      overlay.style.display = "block";
     }
+
+    function closeForgotPopup() {
+      forgotPopup.style.display = "none";
+      overlay.style.display = "none";
+    }
+
+    function getOTP() {
+      alert("OTP Sent (demo)");
+    }
+
+    function continueLogin() {
+      alert("Login successful (demo)");
+      closeForgotPopup();
+    }
+
+    overlay.addEventListener("click", closeForgotPopup);
   </script>
 </body>
 </html>
