@@ -128,63 +128,76 @@
       font-size: 22px;
       cursor: pointer;
     }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="app-header">
-    
-    <h1>Cashifyo</h1>
-    
-  </header>
+  <!-- Page Sections -->
+  <div id="homePage" class="page active">
+    <header class="app-header">
+      <h1>Cashifyo</h1>
+    </header>
 
-  <!-- Total Profit Section -->
-  <section class="profit-section">
-    <div class="profit-info">
-      <span>Your Total Profit</span>
-      <h2>₹ 0.00</h2>
-    </div>
-    <button class="wallet-btn">Wallet</button>
-  </section>
+    <section class="profit-section">
+      <div class="profit-info">
+        <span>Your Total Profit</span>
+        <h2>₹ 0.00</h2>
+      </div>
+      <button class="wallet-btn">Wallet</button>
+    </section>
 
-  <!-- Ads Banner -->
-  <section class="ads-banner">
-    <div class="carousel">
-      <img src="https://via.placeholder.com/300x100?text=Ad+1" alt="Ad 1" />
-    </div>
-  </section>
+    <section class="ads-banner">
+      <div class="carousel">
+        <img src="https://via.placeholder.com/300x100?text=Ad+1" alt="Ad 1" />
+      </div>
+    </section>
 
-  <!-- Grid Buttons -->
-  <section class="grid-buttons">
-    <div class="grid-item" onclick="showPopup('Total Ads')">
-      <img src="https://img.icons8.com/ios-filled/50/ads.png" alt="ads"/>
-      <p>Total Ads</p>
-    </div>
-    <div class="grid-item" onclick="showPopup('Points = INR')">
-      <img src="https://img.icons8.com/ios-filled/50/rupee.png" alt="rupee"/>
-      <p>Total Points = INR</p>
-    </div>
-    <div class="grid-item wide" onclick="showPopup('Scratch Card')">
-      <img src="https://img.icons8.com/ios-filled/50/scratchcard.png" alt="scratch"/>
-      <p>Scratch Card</p>
-    </div>
-    <div class="grid-item" onclick="showPopup('Products')">
-      <img src="https://img.icons8.com/ios-filled/50/product.png" alt="product"/>
-      <p>Products</p>
-    </div>
-    <div class="grid-item" onclick="showPopup('Offers')">
-      <img src="https://img.icons8.com/ios-filled/50/discount.png" alt="offer"/>
-      <p>Subscription Offer</p>
-    </div>
-  </section>
+    <section class="grid-buttons">
+      <div class="grid-item" onclick="showPopup('Total Ads')">
+        <img src="https://img.icons8.com/ios-filled/50/ads.png" alt="ads"/>
+        <p>Total Ads</p>
+      </div>
+      <div class="grid-item" onclick="showPopup('Points = INR')">
+        <img src="https://img.icons8.com/ios-filled/50/rupee.png" alt="rupee"/>
+        <p>Total Points = INR</p>
+      </div>
+      <div class="grid-item wide" onclick="showPopup('Scratch Card')">
+        <img src="https://img.icons8.com/ios-filled/50/scratchcard.png" alt="scratch"/>
+        <p>Scratch Card</p>
+      </div>
+      <div class="grid-item" onclick="showPopup('Products')">
+        <img src="https://img.icons8.com/ios-filled/50/product.png" alt="product"/>
+        <p>Products</p>
+      </div>
+      <div class="grid-item" onclick="showPopup('Offers')">
+        <img src="https://img.icons8.com/ios-filled/50/discount.png" alt="offer"/>
+        <p>Subscription Offer</p>
+      </div>
+    </section>
+  </div>
+
+  <div id="teamPage" class="page">
+    <h2>👥 Team Page</h2>
+  </div>
+
+  <div id="profilePage" class="page">
+    <h2>👤 Profile Page</h2>
+  </div>
 
   <!-- Bottom Navigation -->
-<nav class="bottom-nav">
-  <div onclick="showPage('homePage')">🏠<p>Home</p></div>
-  <div onclick="showPage('teamPage')">👥<p>Team</p></div>
-  <div onclick="showPage('profilePage')">👤<p>Profile</p></div>
-</nav>
+  <nav class="bottom-nav">
+    <div onclick="showPage('homePage')">🏠<p>Home</p></div>
+    <div onclick="showPage('teamPage')">👥<p>Team</p></div>
+    <div onclick="showPage('profilePage')">👤<p>Profile</p></div>
+  </nav>
 
   <!-- Popup -->
   <div class="popup" id="popup">
@@ -204,13 +217,13 @@
     function hidePopup() {
       document.getElementById('popup').style.display = 'none';
     }
-  <script>
-  function showPage(pageId) {
-    document.querySelectorAll('.page').forEach(function(p) {
-      p.classList.remove('active');
-    });
-    document.getElementById(pageId).classList.add('active');
-  }
-</script>
+
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(function(p) {
+        p.classList.remove('active');
+      });
+      document.getElementById(pageId).classList.add('active');
+    }
+  </script>
 </body>
 </html>
